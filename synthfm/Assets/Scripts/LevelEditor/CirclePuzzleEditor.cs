@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+
 
 [CustomEditor(typeof(CirclePuzzle), true)]
 public class CirclePuzzleEditor : Editor
@@ -16,3 +18,4 @@ public class CirclePuzzleEditor : Editor
         }
     }
 }
+#endif

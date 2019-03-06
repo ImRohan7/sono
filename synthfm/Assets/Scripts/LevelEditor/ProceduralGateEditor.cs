@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+
 
 [CustomEditor(typeof(ProceduralGatePuzzle), true)]
 public class ProceduralGateEditor : Editor
@@ -16,3 +18,4 @@ public class ProceduralGateEditor : Editor
         }
     }
 }
+#endif

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+
 
 [CustomEditor(typeof(Puzzle), true)]
 public class PuzzleEditor : Editor
@@ -16,3 +18,4 @@ public class PuzzleEditor : Editor
         }
     }
 }
+#endif

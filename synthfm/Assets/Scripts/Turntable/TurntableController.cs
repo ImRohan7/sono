@@ -103,7 +103,7 @@
         }
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
 
             rotation = turntableManager.rotation;
