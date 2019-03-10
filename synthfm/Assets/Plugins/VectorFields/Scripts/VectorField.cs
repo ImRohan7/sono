@@ -234,18 +234,32 @@ namespace JangaFX
 			}
 			else
 			{
+<<<<<<< HEAD
 #if UNITY_EDITOR
                 EditorUtility.DisplayDialog("Error while saving 3D texture",
 											"You have to save the asset in the Asset directory of your project.", "OK");
 #endif
+=======
+                #if UNITY_EDITOR
+
+                EditorUtility.DisplayDialog("Error while saving 3D texture",
+											"You have to save the asset in the Asset directory of your project.", "OK");
+                #endif
+>>>>>>> R&D
                 return;
 			}
 
 			Debug.Log("Save as "+path);
 			var newGPUTexture = Instantiate(GPUTexture);
+<<<<<<< HEAD
 #if UNITY_EDITOR
             AssetDatabase.CreateAsset(newGPUTexture, path);
 #endif
+=======
+            #if UNITY_EDITOR
+                AssetDatabase.CreateAsset(newGPUTexture, path);
+            #endif
+>>>>>>> R&D
             // DestroyImmediate(newGPUTexture);
         }
 

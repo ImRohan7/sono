@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 #if UNITY_EDITOR
-using UnityEditor;
+    using UnityEditor;
+#endif
 
-
-[CustomEditor(typeof(SetPiece))]
-public class SetPieceEditor : Editor
-{
-    public override void OnInspectorGUI()
+#if UNITY_EDITOR
+    [CustomEditor(typeof(SetPiece))]
+    public class SetPieceEditor : Editor
     {
-        DrawDefaultInspector();
-
-        SetPiece myScript = (SetPiece)target;
-        if (GUILayout.Button("Build Set Piece"))
+        public override void OnInspectorGUI()
         {
-            myScript.DoSetup();
+            DrawDefaultInspector();
+
+            SetPiece myScript = (SetPiece)target;
+            if (GUILayout.Button("Build Set Piece"))
+            {
+                myScript.DoSetup();
+            }
         }
     }
-}
 #endif

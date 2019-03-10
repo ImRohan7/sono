@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 #if UNITY_EDITOR
-using UnityEditor;
+    using UnityEditor;
+#endif
 
+#if UNITY_EDITOR
+    [CustomEditor(typeof(ProceduralGatePuzzle), true)]
 
-[CustomEditor(typeof(ProceduralGatePuzzle), true)]
-public class ProceduralGateEditor : Editor
-{
-    public override void OnInspectorGUI()
+    public class ProceduralGateEditor : Editor
     {
-        DrawDefaultInspector();
-
-        ProceduralGatePuzzle myScript = (ProceduralGatePuzzle)target;
-        if (GUILayout.Button("Build Puzzle"))
+        public override void OnInspectorGUI()
         {
-            myScript.DoSetup();
+            DrawDefaultInspector();
+
+            ProceduralGatePuzzle myScript = (ProceduralGatePuzzle)target;
+            if (GUILayout.Button("Build Puzzle"))
+            {
+                myScript.DoSetup();
+            }
         }
     }
-}
 #endif
