@@ -330,7 +330,58 @@
             previousRight = rightTurntable;
         }
 
-        //https://answers.unity.com/questions/855976/make-a-player-model-rotate-towards-mouse-location.html
+        void DoTouchInput()
+        {
+            InControl.Touch touch = TouchManager.GetTouch(TouchManager.TouchCount);
+
+            Vector3 touchPosition = touch.lastPosition;
+            Vector3 playerPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+            Vector3 forward = this.transform.up;
+            playerPosition.z = 0;
+            touchPosition.z = 0;
+
+            Vector3 targetDir = touchPosition - playerPosition;
+            float angleBetween = Vector3.Angle(targetDir, forward);
+
+            if (inputBindings.Screen_Touch.IsPressed)
+            {
+                ChangeSpeed(Speed.Slow);
+            }
+
+            if (inputBindings.Screen_Touch.WasReleased)
+            {
+                lastMousePosition = touchPosition;
+                movingTowardsMouse = true;
+                Debug.Log("Moving towards mouse");
+
+                //detect double click
+                if ((Time.time - timeSinceLastClick) < 2f)
+                {
+                    ChangeSpeed(Speed.Fast);
+                    timeSinceLastClick = Time.time;
+                }
+                else
+                {
+                    ChangeSpeed(Speed.Normal);
+                    timeSinceLastClick = Time.time;
+                }
+            }
+            else if (movingTowardsMouse && lastMousePosition != null)
+            {
+
+                if (angleBetween < angle_threshold)
+                {
+                    movingTowardsMouse = false;
+                }
+                else
+                {
+                    targetDir = lastMousePosition - playerPosition;
+                    TorqueTowardsMouse(targetDir, playerPosition, angleBetween);
+                }
+            }
+
+        }
+
         void DoMouseInput()
         {
 
